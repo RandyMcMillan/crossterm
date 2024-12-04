@@ -1,7 +1,10 @@
 [package]
-name = "path_append"
+name = "crossterm_examples"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-crossterm = "0.27"
+async-std = "1.13.0"
+crossterm = { version = "0.27", features = ["event-stream", "filedescriptor", "serde", "use-dev-tty"] }
+futures = "0.3.31"
+futures-timer = "3.0.3"
