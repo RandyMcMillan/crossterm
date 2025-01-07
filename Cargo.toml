@@ -62,6 +62,10 @@ name = "event-read"
 required-features = ["bracketed-paste", "events"]
 
 [[bin]]
+name = "event-read-line"
+required-features = ["bracketed-paste", "events"]
+
+[[bin]]
 name = "event-match-modifiers"
 required-features = ["bracketed-paste", "events"]
 
