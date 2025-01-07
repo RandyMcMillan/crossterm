@@ -146,8 +146,6 @@ deny:
 test:
     cargo  test -- --nocapture
 
-run:
-    cargo  run --bin rust-cookbook -- -h || true
 run-crossterm_examples:
     cargo  run --bin  crossterm_examples --features="event-stream events" || true
 
@@ -164,7 +162,7 @@ run-event-read-char-line:
     cargo  run --bin event-read-chat-line || true
 
 run-event-stream-async-std:
-    cargo  run --bin event-stream-async-std || true
+    cargo  run --bin event-stream-async-std --features="event-stream events" || true
 
 run-event-stream-tokio:
     cargo  run --bin event-stream-tokio --features="event-stream events" || true
@@ -180,7 +178,7 @@ run-stderr:
 
 
 build:
-    cargo  build --bins --features crossterm || true
+    cargo  build --bins --features="event-stream events" || true
 
 build-examples:
     cargo b --example demo --manifest-path tui-logger/Cargo.toml --features crossterm || true
