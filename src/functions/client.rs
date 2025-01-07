@@ -170,7 +170,14 @@ impl Client {
     ///
     /// #[tokio::test]
     /// async fn test_subscribe() {
-    ///     let mut client = Client::new(vec![env!("RELAY_URL")]).await.unwrap();
+    ///
+    /// let mut relays = vec!["wss://relay.damus.io"];
+    /// assert_eq!(r.get_or_insert(0), &"wss://relay.damus.io");
+    /// assert_eq!(r.len(), 1);
+    /// assert_eq!(r.get_or_insert(1), &"wss://nos.lol");
+    /// assert_eq!(r.len(), 2);
+    /// let mut client = Arc::new(Mutex::new(Client::new(relays).unwrap(),));
+    ///     let mut client = Client::new(relays).await.unwrap();
     ///     client
     ///     .subscribe(vec![ReqFilter { // None means generate a random ID
     ///         ids: None,
