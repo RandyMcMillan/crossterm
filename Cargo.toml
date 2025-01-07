@@ -88,3 +88,6 @@ required-features = ["events"]
 [[bin]]
 name = "key-display"
 required-features = ["events"]
+
+[dev-dependencies]
+just = "1.38.0"
