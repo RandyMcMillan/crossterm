@@ -1,8 +1,6 @@
-justfile
-
 alias d := doc
 alias u := update
-alias r := run
+#alias r := run
 alias t := test
 alias b := build
 alias c := check
@@ -150,6 +148,36 @@ test:
 
 run:
     cargo  run --bin rust-cookbook -- -h || true
+run-crossterm_examples:
+    cargo  run --bin  crossterm_examples --features="event-stream events" || true
+
+run-event-match-modifiers:
+    cargo  run --bin event-match-modifiers || true
+
+run-event-poll-read:
+    cargo  run --bin event-poll-read || true
+
+run-event-read:
+    cargo  run --bin event-read || true
+
+run-event-read-char-line:
+    cargo  run --bin event-read-chat-line || true
+
+run-event-stream-async-std:
+    cargo  run --bin event-stream-async-std || true
+
+run-event-stream-tokio:
+    cargo  run --bin event-stream-tokio --features="event-stream events" || true
+
+run-is_tty:
+    cargo  run --bin is_tty || true
+
+run-key-display:
+    cargo  run --bin key-display || true
+
+run-stderr:
+    ls "$(target/debug/stderr)" || cargo  run --bin  stderr || true
+
 
 build:
     cargo  build --bins --features crossterm || true
