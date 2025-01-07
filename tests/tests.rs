@@ -1,5 +1,5 @@
 use chrono::Utc;
-use rusted_nostr_tools::{
+use crossterm_examples::{
     event_methods::{
         get_event_hash, serialize_event, sign_event, validate_event, verify_signature,
         UnsignedEvent,
