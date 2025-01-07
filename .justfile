@@ -146,34 +146,37 @@ deny:
 test:
     cargo  test -- --nocapture
 
-run-crossterm_examples:
+crossterm_examples:
     cargo  run --bin  crossterm_examples --features="event-stream events" || true
 
-run-event-match-modifiers:
+event-match-modifiers:
     cargo  run --bin event-match-modifiers || true
 
-run-event-poll-read:
+event-poll-read:
     cargo  run --bin event-poll-read || true
 
-run-event-read:
+event-read:
     cargo  run --bin event-read || true
 
-run-event-read-char-line:
+event-read-line:
+    cargo  run --bin event-read-line || true
+
+event-read-char-line:
     cargo  run --bin event-read-chat-line || true
 
-run-event-stream-async-std:
+event-stream-async-std:
     cargo  run --bin event-stream-async-std --features="event-stream events" || true
 
-run-event-stream-tokio:
+event-stream-tokio:
     cargo  run --bin event-stream-tokio --features="event-stream events" || true
 
-run-is_tty:
+is_tty:
     cargo  run --bin is_tty || true
 
-run-key-display:
+key-display:
     cargo  run --bin key-display || true
 
-run-stderr:
+stderr:
     ls "$(target/debug/stderr)" || cargo  run --bin  stderr || true
 
 
