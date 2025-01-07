@@ -4,7 +4,6 @@ use std::collections::HashMap;
 use std::sync::Arc;
 use thiserror::Error;
 use tungstenite::Message;
-
 use crate::websocket::{
     req::{Req, ReqFilter},
     ws::{SimplifiedWS, SimplifiedWSError},
@@ -110,21 +109,22 @@ impl Client {
     ///  thread,
     /// };
     /// use tungstenite::Message;
-    /// use nostr_rust::{nostr_client::Client, req::ReqFilter};
+    /// use nostr_rust::{nostr_client::Client, req::ReqFilter, Identity, events::extract_events_ws, utils::parse_content_tags};
     ///
     /// fn handle_message(relay_url: &String, message: &Message) -> Result<(), String> {
     ///   println!("Received message: {:?}", message);
     ///
     ///   Ok(())
     /// }
-    ///
-    /// let mut client = Arc::new(Mutex::new(Client::new(vec![env!("RELAY_URL")]).unwrap()));
+    /// let mut relays = vec!["wss://relay.damus.io","wss://nos.lol"];
+    /// let mut client = Arc::new(Mutex::new(Client::new(vec!["wss://relay.damus.io"]).unwrap(),));
+    /// //let mut client = Arc::new(Mutex::new(Client::new(relays).unwrap()));
     ///
     /// // Run a new thread to listen
     /// let nostr_clone = client.clone();
     /// let nostr_thread = thread::spawn(move || loop {
     ///    let events = nostr_clone.lock().unwrap().next_data().unwrap();
-    ///    
+    ///
     ///   for (relay_url, message) in events.iter() {
     ///     handle_message(relay_url, message).unwrap();
     ///   }
