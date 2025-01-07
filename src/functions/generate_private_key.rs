@@ -8,6 +8,12 @@ pub struct GeneratePrivateKey {
     bech32_private_key: String,
 }
 
+impl Default for GeneratePrivateKey {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl GeneratePrivateKey {
     pub fn new() -> Self {
         let mut rng = rand::thread_rng();

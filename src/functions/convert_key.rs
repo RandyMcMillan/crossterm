@@ -22,12 +22,10 @@ impl ConvertKey {
     }
 
     pub fn to_bech32_public_key(key: &str) -> String {
-        let bech32_pubkey = bech32_encode(Prefix::Npub, &key.to_string());
-        bech32_pubkey
+        bech32_encode(Prefix::Npub, &key.to_string())
     }
 
     pub fn to_bech32_private_key(key: &str) -> String {
-        let bech32_privkey = bech32_encode(Prefix::Nsec, &key.to_string());
-        bech32_privkey
+        bech32_encode(Prefix::Nsec, &key.to_string())
     }
 }

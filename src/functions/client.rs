@@ -1,13 +1,13 @@
 use super::event_methods::SignedEvent;
+use crate::websocket::{
+    req::{Req, ReqFilter},
+    ws::{SimplifiedWS, SimplifiedWSError},
+};
 use serde_json::{json, Value};
 use std::collections::HashMap;
 use std::sync::Arc;
 use thiserror::Error;
 use tungstenite::Message;
-use crate::websocket::{
-    req::{Req, ReqFilter},
-    ws::{SimplifiedWS, SimplifiedWSError},
-};
 
 #[derive(Error, Debug)]
 pub enum ClientError {
@@ -100,7 +100,7 @@ impl Client {
         Ok(())
     }
 
-    #[cfg(not(feature = "async"))]
+    //#[cfg(not(feature = "async"))]
     /// Get next data from the relays
     /// # Example
     /// ```rust
@@ -151,7 +151,6 @@ impl Client {
     /// // Wait 3s for the thread to finish
     /// std::thread::sleep(std::time::Duration::from_secs(3));
     /// ```
-
     pub async fn next_data(&mut self) -> Result<Vec<(String, tungstenite::Message)>, ClientError> {
         let mut events: Vec<(String, tungstenite::Message)> = Vec::new();
 

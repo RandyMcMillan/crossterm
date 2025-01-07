@@ -1,4 +1,4 @@
-use chrono::NaiveDateTime;
+use chrono::DateTime;
 use secp256k1::{
     schnorr::Signature, Error, KeyPair, Message, Secp256k1, SecretKey, XOnlyPublicKey,
 };
@@ -27,7 +27,7 @@ pub struct SignedEvent {
 }
 
 pub fn get_event_hash(event: &UnsignedEvent) -> Result<String, String> {
-    let commitment_string = serialize_event(&event)?;
+    let commitment_string = serialize_event(event)?;
 
     let mut hasher = Sha256::new();
 
@@ -59,9 +59,8 @@ pub fn sign_event(event: &UnsignedEvent, key: &str) -> Result<SignedEvent, Error
     let pair = KeyPair::from_seckey_slice(&secp, &secret_key.secret_bytes())
         .expect("Failed to generate keypair from secret key");
 
-    let message = Message::from_slice(
-        Sha256::digest(&serialize_event(event).unwrap().as_bytes()).as_slice(),
-    )?;
+    let message =
+        Message::from_slice(Sha256::digest(serialize_event(event).unwrap().as_bytes()).as_slice())?;
     let sig = hex::encode(secp.sign_schnorr_no_aux_rand(&message, &pair).as_ref());
 
     let id = get_event_hash(event).unwrap();
@@ -83,7 +82,7 @@ pub fn validate_event(event: &UnsignedEvent) -> bool {
     }
 
     // Check if created_at is a valid Unix timestamp in seconds
-    let datetime_opt = NaiveDateTime::from_timestamp_opt(event.created_at as i64, 0);
+    let datetime_opt = DateTime::from_timestamp(event.created_at, 0);
     if datetime_opt.is_none() {
         return false;
     }

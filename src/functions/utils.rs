@@ -15,13 +15,15 @@ impl std::fmt::Display for Prefix {
         }
     }
 }
-trait VecSeekOrAppend<T:PartialEq>:Sized {
+#[allow(dead_code)]
+trait VecSeekOrAppend<T: PartialEq>: Sized {
     fn get_or_insert(&mut self, item: T) -> &T;
 }
 
 impl<T> VecSeekOrAppend<T> for Vec<T>
-    where T: PartialEq + Clone {
-
+where
+    T: PartialEq + Clone,
+{
     fn get_or_insert(&mut self, item: T) -> &T {
         if !self.contains(&item) {
             self.push(item.clone());
@@ -54,7 +56,7 @@ pub fn random_hash() -> String {
 }
 #[test]
 fn appends_ok() {
-    let mut r = vec![1,2,3];
+    let mut r = vec![1, 2, 3];
     assert_eq!(r.get_or_insert(3), &3);
     assert_eq!(r.len(), 3);
     assert_eq!(r.get_or_insert(4), &4);
