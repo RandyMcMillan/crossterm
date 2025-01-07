@@ -116,9 +116,9 @@ impl Client {
     ///
     ///   Ok(())
     /// }
-    /// let mut relays = vec!["wss://relay.damus.io","wss://nos.lol"];
-    /// let mut client = Arc::new(Mutex::new(Client::new(vec!["wss://relay.damus.io"]).unwrap(),));
-    /// //let mut client = Arc::new(Mutex::new(Client::new(relays).unwrap()));
+    /// let mut relays = vec!["wss://relay.damus.io"];
+    /// //let mut client = Arc::new(Mutex::new(Client::new(vec!["wss://relay.damus.io"]).unwrap(),));
+    /// let mut client = Arc::new(Mutex::new(Client::new(relays).unwrap(),));
     ///
     /// // Run a new thread to listen
     /// let nostr_clone = client.clone();
